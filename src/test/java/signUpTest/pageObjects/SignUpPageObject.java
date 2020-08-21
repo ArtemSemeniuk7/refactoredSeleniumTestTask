@@ -1,10 +1,13 @@
-package signUpTest;
+package signUpTest.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import util.MailGenerator;
+import util.ToFile;
+
 import java.util.ArrayList;
 import java.util.concurrent.*;
 import static org.junit.Assert.assertEquals;

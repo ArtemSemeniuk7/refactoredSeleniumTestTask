@@ -1,4 +1,4 @@
-package signUpTest;
+package util;
 
 public class MailGenerator {
     private static final String mailSign = "@gmail.com";
