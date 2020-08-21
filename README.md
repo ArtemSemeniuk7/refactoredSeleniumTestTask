@@ -16,7 +16,7 @@
 4. Wait for page loading. +
 5. Measure 2-4 steps execution time (milliseconds). +
  
-Note: test different threads number: 1, 2, 5, 10 +
-Note: test run duration - 5 minutes +
-Note: store filled emails and log the list at the end of the tests run +
-Note: check different browsers (headless mode) during one tes +
+ Note: test different threads number: 1, 2, 5, 10 +
+ Note: test run duration - 5 minutes +
+ Note: store filled emails and log the list at the end of the tests run +
+ Note: check different browsers (headless mode) during one tes +
