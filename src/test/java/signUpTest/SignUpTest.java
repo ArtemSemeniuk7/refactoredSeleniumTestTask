@@ -32,8 +32,8 @@ public class SignUpTest {
 
         firefoxSignUpPageObject.getStartedConcurent(1, "firefox");
         firefoxSignUpPageObject.getStartedConcurent(2, "firefox");
-       // firefoxSignUpPageObject.getStartedConcurent(5, "firefox");
-      //  firefoxSignUpPageObject.getStartedConcurent(10,"firefox");
+        firefoxSignUpPageObject.getStartedConcurent(5, "firefox");
+        firefoxSignUpPageObject.getStartedConcurent(10,"firefox");
     }
 
     @Test
