@@ -14,3 +14,7 @@ firefox time : 1485millis, email : firefoxrandomemail13@gmail.com | number of th
 firefox time : 1475millis, email : firefoxrandomemail14@gmail.com | number of thread : 5  --- TEST PASSED
 firefox time : 1484millis, email : firefoxrandomemail15@gmail.com | number of thread : 5  --- TEST PASSED
 firefox time : 1695millis, email : firefoxrandomemail16@gmail.com | number of thread : 5  --- TEST PASSED
+firefox time : 1566millis, email : firefoxrandomemail1@gmail.com | number of thread : 1  --- TEST PASSED
+chrome time : 1289millis, email : chromerandomemail1@gmail.com | number of thread : 1  --- TEST PASSED
+chrome time : 1591millis, email : chromerandomemail1@gmail.com | number of thread : 1  --- TEST PASSED
+firefox time : 1505millis, email : firefoxrandomemail2@gmail.com | number of thread : 1  --- TEST PASSED

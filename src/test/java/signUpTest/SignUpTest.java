@@ -4,14 +4,11 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import signUpTest.pageObjects.SignUpPageObject;
@@ -24,17 +21,6 @@ import static org.junit.Assert.assertEquals;
 public class SignUpTest {
     private SignUpPageObject signUpPageObject;
     private final ArrayList<String> writeList = new ArrayList<>();
-    private WebDriver driver;
-
-    @FindBy(id = "login-submit")
-    private WebElement signIn;
-
-    @FindBy(id = "signup-submit")
-    private WebElement submit;
-
-    @FindBy(id = "username")
-    private WebElement enterEmail;
-
 
     @Epic("TESTING FOR https://id.atlassian.com/login tasks")
     @Feature(value = "Testing of Firefox")
@@ -50,10 +36,8 @@ public class SignUpTest {
         firefoxOptions.setBinary(firefoxBinary);
         firefoxOptions.setHeadless(true);
 
-        driver = new FirefoxDriver(firefoxOptions);
+        WebDriver driver = new FirefoxDriver(firefoxOptions);
         signUpPageObject = new SignUpPageObject(driver, "firefox");
-
-        PageFactory.initElements(driver, this);
 
         concurrentRun(1);
         concurrentRun(2);
@@ -72,10 +56,8 @@ public class SignUpTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("headless");
 
-        driver = new ChromeDriver(chromeOptions);
+        WebDriver driver = new ChromeDriver(chromeOptions);
         signUpPageObject = new SignUpPageObject(driver, "chrome");
-
-        PageFactory.initElements(driver, this);
 
         concurrentRun(1);
         concurrentRun(2);
@@ -85,29 +67,31 @@ public class SignUpTest {
 
     @Step("Open connection")
     public void open() {
-        signUpPageObject.getDRIVER().get(SignUpPageObject.getURL());
-        String currentTitle = driver.getTitle();
-        assertEquals(currentTitle, SignUpPageObject.getEXPECTED_TITLE());
+        signUpPageObject.getDriver().get(SignUpPageObject.getURL());
+        String currentTitle = signUpPageObject.getDriver().getTitle();
+        assertEquals(currentTitle, SignUpPageObject.getExpectedTitle());
     }
 
     @Step("Log in in site")
     public String login () {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 300);
+        WebDriverWait webDriverWait =
+                new WebDriverWait(signUpPageObject.getDriver(), 300);
 
-        String currentEmail = MailGenerator.generateEmail(signUpPageObject.getBROWSER_NAME());
-        enterEmail.sendKeys(currentEmail);
+        String currentEmail =
+                MailGenerator.generateEmail(signUpPageObject.getBrowserName());
+        signUpPageObject.getEnterEmail().sendKeys(currentEmail);
 
         long startTime = System.currentTimeMillis();
 
-        signIn.click();
+        signUpPageObject.getSignIn().click();
         webDriverWait.until(ExpectedConditions.
-                visibilityOf(submit));
+                visibilityOf(signUpPageObject.getSignUp()));
 
         long endtime = System.currentTimeMillis();
 
-        assertEquals(submit.getText(), "Sign up");
+        assertEquals(signUpPageObject.getSignUp().getText(), "Sign up");
 
-        return signUpPageObject.getBROWSER_NAME() + " time : " + (endtime - startTime) +
+        return signUpPageObject.getBrowserName() + " time : " + (endtime - startTime) +
                 "millis, email : " + currentEmail +
                 " | number of thread : ";
     }
@@ -131,7 +115,7 @@ public class SignUpTest {
 
     @AfterEach
     public void end() {
-        System.out.println("---- end of " + signUpPageObject.getBROWSER_NAME() + " test ----");
-        driver.quit();
+        System.out.println("---- end of " + signUpPageObject.getBrowserName() + " test ----");
+        signUpPageObject.getDriver().quit();
     }
 }
