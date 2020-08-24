@@ -20,4 +20,4 @@ seleniumTestTask после рефакторинга, сделал работу 
 Note: test different threads number: 1, 2, 5, 10 + 
 Note: test run duration - 5 minutes + 
 Note: store filled emails and log the list at the end of the tests run + 
-Note: check different browsers (headless mode) during one tes +
+Note: check different browsers (headless mode) during one test +
