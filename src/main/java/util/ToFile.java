@@ -6,21 +6,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ToFile {
-    private ArrayList<String> writeList;
-
-    public ToFile(ArrayList<String> writeList) {
-        this.writeList = writeList;
-    }
-    public void writeToFile() {
+    public static void writeToFile(ArrayList<String> writeList) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt", true));
             for (String writeString : writeList) {
                 writer.write(writeString);
+                log(writeString);
                 writer.newLine();
             }
             writer.flush();
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void log(String log) {
+        System.out.println(log);
     }
 }

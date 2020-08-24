@@ -1,80 +1,32 @@
 package signUpTest.pageObjects;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import util.MailGenerator;
-import util.ToFile;
-
-import java.util.ArrayList;
-import java.util.concurrent.*;
-import static org.junit.Assert.assertEquals;
 
 public class SignUpPageObject {
 
-    private final static String url = "https://id.atlassian.com/login";
-    private final static String expectedTitle = "Log in to continue - Log in with Atlassian account";
-    private ArrayList<String> writeList;
-    private WebDriver driver;
+    private final static String URL = "https://id.atlassian.com/login";
+    private final static String EXPECTED_TITLE = "Log in to continue - Log in with Atlassian account";
+    private final String BROWSER_NAME;
+    private final WebDriver DRIVER;
 
-    public SignUpPageObject(WebDriver driver) {
-        this.driver = driver;
+    public SignUpPageObject(WebDriver DRIVER, String BROWSER_NAME) {
+        this.DRIVER = DRIVER;
+        this.BROWSER_NAME = BROWSER_NAME;
     }
 
-    public void open() {
-        driver.get(url);
+    public static String getURL() {
+        return URL;
     }
 
-    public void getStartedConcurent(int numberOfThreads, String browserName) throws ExecutionException, InterruptedException {
-
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 300);
-        MailGenerator mailGenerator = new MailGenerator(browserName);
-
-        ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
-        Callable <String> callable = new Callable<String>() {
-            @Override
-            public String call() {
-                open();
-
-                String currentTitle = driver.getTitle();
-                String currentEmail = mailGenerator.generateEmail();
-                driver.findElement(By.id("username")).
-                        sendKeys(currentEmail);
-
-                assertEquals(currentTitle, expectedTitle);
-
-                long startTime = System.currentTimeMillis();
-
-                WebElement signIn = driver.findElement(By.id("login-submit"));
-                signIn.click();
-                webDriverWait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("signup-submit")));
-                WebElement submit = driver.findElement(By.id("signup-submit"));
-
-                long endtime = System.currentTimeMillis();
-
-                assertEquals(submit.getText(), "Sign up");
-
-                return browserName + " time : " + (endtime - startTime) +
-                        "millis, email : "  + currentEmail +
-                        " | number of thread : " + numberOfThreads + "  --- TEST PASSED";
-            }
-        };
-
-        writeList = new ArrayList<>();
-        for (int i = 0; i < numberOfThreads; i++) {
-            Future<String> future = executorService.submit(callable);
-            String log = future.get();
-            System.out.println(log);
-            writeList.add(log);
-        }
-
-        ToFile toFile = new ToFile(writeList);
-        toFile.writeToFile();
+    public static String getEXPECTED_TITLE() {
+        return EXPECTED_TITLE;
     }
 
-    public WebDriver getDriver() {
-        return driver;
+    public String getBROWSER_NAME() {
+        return BROWSER_NAME;
+    }
+
+    public WebDriver getDRIVER() {
+        return DRIVER;
     }
 }

@@ -58,3 +58,11 @@ chrome time : 980millis, email : chromerandomemail10@gmail.com | number of threa
 firefox time : 3128millis, email : firefoxrandomemail1@gmail.com | number of thread : 1  --- TEST PASSED
 firefox time : 1569millis, email : firefoxrandomemail1@gmail.com | number of thread : 2  --- TEST PASSED
 firefox time : 1600millis, email : firefoxrandomemail2@gmail.com | number of thread : 2  --- TEST PASSED
+firefox time : 5387millis, email : firefoxrandomemail1@gmail.com | number of thread : 1  --- TEST PASSED
+firefox time : 6347millis, email : firefoxrandomemail2@gmail.com | number of thread : 2  --- TEST PASSED
+firefox time : 2557millis, email : firefoxrandomemail3@gmail.com | number of thread : 2  --- TEST PASSED
+firefox time : 1880millis, email : firefoxrandomemail4@gmail.com | number of thread : 5  --- TEST PASSED
+firefox time : 2943millis, email : firefoxrandomemail5@gmail.com | number of thread : 5  --- TEST PASSED
+firefox time : 5631millis, email : firefoxrandomemail6@gmail.com | number of thread : 5  --- TEST PASSED
+firefox time : 1663millis, email : firefoxrandomemail7@gmail.com | number of thread : 5  --- TEST PASSED
+firefox time : 1949millis, email : firefoxrandomemail8@gmail.com | number of thread : 5  --- TEST PASSED
